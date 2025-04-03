@@ -1,0 +1,65 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 0519ecb..70a6d5b 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1 +1 @@[m
+[31m- [m
+\ No newline at end of file[m
+[32m+[m[32m# flutter_app_badger_fork[m
+\ No newline at end of file[m
+[1mdiff --git a/android/build.gradle b/android/build.gradle[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/android/build.gradle[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/android/src/main/AndroidManifest.xml b/android/src/main/AndroidManifest.xml[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/android/src/main/AndroidManifest.xml[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/android/src/main/java/fr/g123k/flutterappbadger/FlutterAppBadgerPlugin.java b/android/src/main/java/fr/g123k/flutterappbadger/FlutterAppBadgerPlugin.java[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/android/src/main/java/fr/g123k/flutterappbadger/FlutterAppBadgerPlugin.java[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/ios/Classes/FlutterAppBadgerPlugin.h b/ios/Classes/FlutterAppBadgerPlugin.h[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/ios/Classes/FlutterAppBadgerPlugin.h[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/ios/Classes/FlutterAppBadgerPlugin.m b/ios/Classes/FlutterAppBadgerPlugin.m[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/ios/Classes/FlutterAppBadgerPlugin.m[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/lib/flutter_app_badger.dart b/lib/flutter_app_badger.dart[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/lib/flutter_app_badger.dart[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
+[1mdiff --git a/pubspec.yaml b/pubspec.yaml[m
+[1mdeleted file mode 100644[m
+[1mindex 0519ecb..0000000[m
+[1m--- a/pubspec.yaml[m
+[1m+++ /dev/null[m
+[36m@@ -1 +0,0 @@[m
+[31m- [m
+\ No newline at end of file[m
