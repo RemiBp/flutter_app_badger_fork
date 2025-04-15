@@ -1,3 +1,7 @@
+import 'dart:typed_data';
+import 'item.dart';
+import 'postal_address.dart';
+
 class Contact {
   Contact({
     this.displayName,

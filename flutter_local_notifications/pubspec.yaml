@@ -30,4 +30,5 @@ flutter:
       macos:
         pluginClass: FlutterLocalNotificationsPlugin
       linux:
+        pluginClass: LinuxFlutterLocalNotificationsPlugin
         default_package: flutter_local_notifications_linux 
