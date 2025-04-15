@@ -1,0 +1,37 @@
+group 'fr.remibp.contactsservice'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    namespace 'fr.remibp.contactsservice'
+    compileSdkVersion 33
+    
+    defaultConfig {
+        minSdkVersion 16
+    }
+    
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+    
+    sourceSets {
+        main {
+            java {
+                // Inclure le code source pour contacts_service
+                srcDirs += 'src/main/java/fr/remibp/contactsservice'
+            }
+        }
+    }
+} 

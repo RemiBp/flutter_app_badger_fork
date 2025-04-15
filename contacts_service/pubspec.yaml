@@ -1,0 +1,21 @@
+name: contacts_service
+description: Plugins Flutter pour l'accès aux contacts (iOS et Android).
+version: 1.0.0+1
+homepage: https://github.com/RemiBp/Choice.git
+
+environment:
+  sdk: ">=2.12.0 <4.0.0"
+  flutter: ">=2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: fr.remibp.contactsservice
+        pluginClass: ContactsServicePlugin
+      ios:
+        pluginClass: ContactsServicePlugin 
