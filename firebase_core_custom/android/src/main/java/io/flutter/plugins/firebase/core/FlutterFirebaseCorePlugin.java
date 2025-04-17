@@ -1,5 +1,6 @@
 package io.flutter.plugins.firebase.core;
 
+import android.content.Context;
 import androidx.annotation.NonNull;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -16,15 +17,22 @@ import java.util.Map;
 /** FlutterFirebaseCorePlugin */
 public class FlutterFirebaseCorePlugin implements FlutterPlugin, MethodCallHandler {
     private MethodChannel channel;
+    private Context applicationContext;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPlugin.FlutterPluginBinding flutterPluginBinding) {
+        applicationContext = flutterPluginBinding.getApplicationContext();
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "plugins.flutter.io/firebase_core");
         channel.setMethodCallHandler(this);
     }
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+        if (applicationContext == null) {
+            result.error("firebase_core", "App is not initialized", "The application context is null.");
+            return;
+        }
+        
         if (call.method.equals("Firebase#initializeApp")) {
             initializeApp(call, result);
         } else if (call.method.equals("Firebase#initializeCore")) {
@@ -45,17 +53,28 @@ public class FlutterFirebaseCorePlugin implements FlutterPlugin, MethodCallHandl
         FirebaseOptions options = getOptionsFromMap(optionsMap);
         
         FirebaseApp app;
-        if (appName == null || appName.equals("[DEFAULT]")) {
-            app = FirebaseApp.initializeApp(options);
-        } else {
-            app = FirebaseApp.initializeApp(options, appName);
+        try {
+            if (appName == null || appName.equals("[DEFAULT]")) {
+                app = FirebaseApp.initializeApp(applicationContext, options);
+            } else {
+                app = FirebaseApp.initializeApp(applicationContext, options, appName);
+            }
+            result.success(mapFromFirebaseApp(app));
+        } catch (IllegalStateException e) {
+            // Handle case where app is already initialized
+            if (appName == null || appName.equals("[DEFAULT]")) {
+                app = FirebaseApp.getInstance();
+            } else {
+                app = FirebaseApp.getInstance(appName);
+            }
+            result.success(mapFromFirebaseApp(app));
+        } catch (Exception e) {
+            result.error("firebase_core", "Error initializing Firebase app", e.getMessage());
         }
-        
-        result.success(mapFromFirebaseApp(app));
     }
     
     private void initializeCore(Result result) {
-        List<FirebaseApp> apps = FirebaseApp.getApps();
+        List<FirebaseApp> apps = FirebaseApp.getApps(applicationContext);
         Map<String, Object> appsList = new HashMap<>();
         
         for (FirebaseApp app : apps) {
@@ -66,7 +85,7 @@ public class FlutterFirebaseCorePlugin implements FlutterPlugin, MethodCallHandl
     }
     
     private void getApps(Result result) {
-        List<FirebaseApp> apps = FirebaseApp.getApps();
+        List<FirebaseApp> apps = FirebaseApp.getApps(applicationContext);
         Map<String, Object> appsList = new HashMap<>();
         
         for (FirebaseApp app : apps) {
@@ -126,5 +145,6 @@ public class FlutterFirebaseCorePlugin implements FlutterPlugin, MethodCallHandl
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         channel.setMethodCallHandler(null);
+        applicationContext = null;
     }
 } 
