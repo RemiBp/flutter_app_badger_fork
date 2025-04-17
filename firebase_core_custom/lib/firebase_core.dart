@@ -119,12 +119,22 @@ class FirebaseOptions {
   final String appId;
   final String messagingSenderId;
   final String projectId;
+  final String? authDomain;
+  final String? storageBucket;
+  final String? databaseURL;
+  final String? measurementId;
+  final String? trackingId;
   
   const FirebaseOptions({
     required this.apiKey,
     required this.appId,
     required this.messagingSenderId,
     required this.projectId,
+    this.authDomain,
+    this.storageBucket,
+    this.databaseURL,
+    this.measurementId,
+    this.trackingId,
   });
   
   @override
@@ -138,9 +148,22 @@ class Firebase {
   // Méthodes statiques pour compatibilité avec le Firebase officiel
   static Future<FirebaseApp> initializeApp({
     String? name,
-    Map<String, dynamic>? options,
+    FirebaseOptions? options,
   }) {
-    return instance.initializeApp(name: name, options: options);
+    Map<String, dynamic>? optionsMap = options == null ? null : {
+      'apiKey': options.apiKey,
+      'appId': options.appId,
+      'messagingSenderId': options.messagingSenderId,
+      'projectId': options.projectId,
+      'authDomain': options.authDomain,
+      'storageBucket': options.storageBucket,
+      'databaseURL': options.databaseURL,
+      'measurementId': options.measurementId,
+      'trackingId': options.trackingId,
+    };
+    optionsMap?.removeWhere((key, value) => value == null);
+
+    return instance.initializeApp(name: name, options: optionsMap);
   }
   
   static Future<List<FirebaseApp>> get apps => instance.apps;
