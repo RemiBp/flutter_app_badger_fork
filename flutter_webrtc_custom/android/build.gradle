@@ -28,6 +28,8 @@ android {
     // Use compileSdkVersion and buildToolsVersion from android/app/build.gradle
     compileSdkVersion 34 // Example: Use the version from your main app
     buildToolsVersion "34.0.0" // Example: Use the version from your main app
+    
+    namespace 'com.cloudwebrtc.webrtc' // Added namespace
 
     defaultConfig {
         minSdkVersion 21 // Example: Use the version from your main app

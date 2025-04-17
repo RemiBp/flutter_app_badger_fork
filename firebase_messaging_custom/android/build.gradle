@@ -1,4 +1,4 @@
-group 'com.example.firebase_messaging_custom' // CHANGE TO YOUR PACKAGE NAME
+group 'io.flutter.plugins.firebase.messaging' // Updated with the correct package name
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -28,7 +28,9 @@ android {
     // Use compileSdkVersion and buildToolsVersion from android/app/build.gradle
     compileSdkVersion 34 // Example: Use the version from your main app
     buildToolsVersion "34.0.0" // Example: Use the version from your main app
-
+    
+    namespace 'io.flutter.plugins.firebase.messaging' // Added namespace
+    
     defaultConfig {
         minSdkVersion 21 // Example: Use the version from your main app
     }
