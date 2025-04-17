@@ -22,6 +22,6 @@ flutter:
     platforms:
       android:
         package: io.flutter.plugins.firebase.messaging
-        pluginClass: FlutterFirebaseMessagingPlugin
+        pluginClass: FirebaseMessagingPlugin
       ios:
         pluginClass: FLTFirebaseMessagingPlugin 
