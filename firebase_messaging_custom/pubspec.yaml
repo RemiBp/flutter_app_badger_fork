@@ -1,4 +1,4 @@
-name: firebase_messaging_custom
+name: firebase_messaging
 description: Custom Firebase Messaging plugin implementation.
 version: 0.0.1
 homepage: # Add repository link here if available
@@ -15,7 +15,7 @@ dependencies:
     git:
       url: https://github.com/RemiBp/flutter_app_badger_fork.git
       path: firebase_core_custom
-      ref: 81f26be # Use the latest commit hash we just pushed
+      ref: d45936b # Use the latest commit hash
   firebase_core_platform_interface: ^5.0.0 # Common dependency
 
 dev_dependencies:
