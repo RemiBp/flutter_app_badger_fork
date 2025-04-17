@@ -1,4 +1,4 @@
-name: firebase_core_custom
+name: firebase_core
 description: A custom implementation of Firebase Core to avoid Android Gradle issues
 version: 1.0.0
 homepage: https://github.com/YourUsername/firebase_core_custom
