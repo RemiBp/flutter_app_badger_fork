@@ -9,7 +9,7 @@ import androidx.annotation.Keep;
 @Keep
 public class FlutterFirebaseCoreRegistrar implements ComponentRegistrar {
   private static final String LIBRARY_NAME = "flutter-fire-core";
-  private static final String LIBRARY_VERSION = "2.17.0";
+  private static final String LIBRARY_VERSION = "2.15.1";
 
   @Override
   public List<com.google.firebase.components.Component<?>> getComponents() {
