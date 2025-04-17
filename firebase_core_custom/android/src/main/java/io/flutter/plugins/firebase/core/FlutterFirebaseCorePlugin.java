@@ -1,5 +1,6 @@
 package io.flutter.plugins.firebase.core;
 
+import android.content.Context;
 import androidx.annotation.NonNull;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
@@ -9,6 +10,7 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,11 +18,13 @@ import java.util.Map;
 /** FlutterFirebaseCorePlugin */
 public class FlutterFirebaseCorePlugin implements FlutterPlugin, MethodCallHandler {
     private MethodChannel channel;
+    private Context applicationContext;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPlugin.FlutterPluginBinding flutterPluginBinding) {
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), "plugins.flutter.io/firebase_core");
         channel.setMethodCallHandler(this);
+        applicationContext = flutterPluginBinding.getApplicationContext();
     }
 
     @Override
@@ -37,94 +41,62 @@ public class FlutterFirebaseCorePlugin implements FlutterPlugin, MethodCallHandl
     }
 
     private void initializeApp(MethodCall call, Result result) {
+        // Instead of actually initializing Firebase, we return stub data
         Map<String, Object> arguments = call.arguments();
         
         String appName = (String) arguments.get("appName");
         Map<String, Object> optionsMap = (Map<String, Object>) arguments.get("options");
         
-        FirebaseOptions options = getOptionsFromMap(optionsMap);
-        
-        FirebaseApp app;
         if (appName == null || appName.equals("[DEFAULT]")) {
-            app = FirebaseApp.initializeApp(options);
-        } else {
-            app = FirebaseApp.initializeApp(options, appName);
+            appName = "[DEFAULT]";
         }
         
-        result.success(mapFromFirebaseApp(app));
+        // Return a mock initialized app
+        Map<String, Object> appMap = new HashMap<>();
+        appMap.put("name", appName);
+        appMap.put("options", optionsMap != null ? optionsMap : getDefaultOptions());
+        
+        result.success(appMap);
     }
     
     private void initializeCore(Result result) {
-        List<FirebaseApp> apps = FirebaseApp.getApps();
-        Map<String, Object> appsList = new HashMap<>();
+        // Return a list with just the default app
+        ArrayList<Map<String, Object>> apps = new ArrayList<>();
         
-        for (FirebaseApp app : apps) {
-            appsList.put(app.getName(), mapFromFirebaseApp(app));
-        }
+        Map<String, Object> defaultApp = new HashMap<>();
+        defaultApp.put("name", "[DEFAULT]");
+        defaultApp.put("options", getDefaultOptions());
         
-        result.success(appsList);
+        apps.add(defaultApp);
+        
+        result.success(apps);
     }
     
     private void getApps(Result result) {
-        List<FirebaseApp> apps = FirebaseApp.getApps();
-        Map<String, Object> appsList = new HashMap<>();
+        // Return a list with just the default app
+        ArrayList<Map<String, Object>> apps = new ArrayList<>();
         
-        for (FirebaseApp app : apps) {
-            appsList.put(app.getName(), mapFromFirebaseApp(app));
-        }
+        Map<String, Object> defaultApp = new HashMap<>();
+        defaultApp.put("name", "[DEFAULT]");
+        defaultApp.put("options", getDefaultOptions());
         
-        result.success(appsList);
+        apps.add(defaultApp);
+        
+        result.success(apps);
     }
     
-    private Map<String, Object> mapFromFirebaseApp(FirebaseApp app) {
-        Map<String, Object> appMap = new HashMap<>();
-        
-        appMap.put("name", app.getName());
-        appMap.put("options", mapFromFirebaseOptions(app.getOptions()));
-        
-        return appMap;
-    }
-    
-    private Map<String, Object> mapFromFirebaseOptions(FirebaseOptions options) {
-        Map<String, Object> optionsMap = new HashMap<>();
-        
-        optionsMap.put("apiKey", options.getApiKey());
-        optionsMap.put("appId", options.getApplicationId());
-        optionsMap.put("messagingSenderId", options.getGcmSenderId());
-        optionsMap.put("projectId", options.getProjectId());
-        
-        if (options.getStorageBucket() != null) {
-            optionsMap.put("storageBucket", options.getStorageBucket());
-        }
-        
-        if (options.getDatabaseUrl() != null) {
-            optionsMap.put("databaseURL", options.getDatabaseUrl());
-        }
-        
-        return optionsMap;
-    }
-    
-    private FirebaseOptions getOptionsFromMap(Map<String, Object> optionsMap) {
-        FirebaseOptions.Builder builder = new FirebaseOptions.Builder();
-        
-        builder.setApiKey((String) optionsMap.get("apiKey"));
-        builder.setApplicationId((String) optionsMap.get("appId"));
-        builder.setGcmSenderId((String) optionsMap.get("messagingSenderId"));
-        builder.setProjectId((String) optionsMap.get("projectId"));
-        
-        if (optionsMap.containsKey("storageBucket")) {
-            builder.setStorageBucket((String) optionsMap.get("storageBucket"));
-        }
-        
-        if (optionsMap.containsKey("databaseURL")) {
-            builder.setDatabaseUrl((String) optionsMap.get("databaseURL"));
-        }
-        
-        return builder.build();
+    private Map<String, Object> getDefaultOptions() {
+        Map<String, Object> options = new HashMap<>();
+        options.put("apiKey", "mock-api-key");
+        options.put("appId", "mock-app-id");
+        options.put("messagingSenderId", "mock-sender-id");
+        options.put("projectId", "mock-project-id");
+        return options;
     }
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
         channel.setMethodCallHandler(null);
+        applicationContext = null;
     }
 } 
