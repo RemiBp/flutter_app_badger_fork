@@ -1,0 +1,45 @@
+group 'io.flutter.plugins.firebase.core'
+version '1.0'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.2'
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 33
+    
+    namespace 'io.flutter.plugins.firebase.core'
+    
+    defaultConfig {
+        minSdkVersion 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'com.google.firebase:firebase-bom:32.2.0'
+    implementation 'com.google.firebase:firebase-common:20.3.3'
+    implementation 'com.google.firebase:firebase-components:17.1.0'
+    implementation 'androidx.annotation:annotation:1.5.0'
+} 
