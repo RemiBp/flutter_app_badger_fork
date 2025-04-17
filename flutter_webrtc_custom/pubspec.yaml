@@ -24,8 +24,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.flutter_webrtc_custom # CHANGE TO YOUR PACKAGE NAME
-        pluginClass: FlutterWebRTCPlugin # Choose an appropriate class name
+        package: com.cloudwebrtc.webrtc # Updated package name
+        pluginClass: FlutterWebRTCPlugin # Class name stays the same
       ios:
         pluginClass: FlutterWebRTCPlugin # Choose an appropriate class name
       web:

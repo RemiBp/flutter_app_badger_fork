@@ -1,4 +1,4 @@
-group 'com.example.flutter_webrtc_custom' // CHANGE TO YOUR PACKAGE NAME
+group 'com.cloudwebrtc.webrtc' // Updated with the correct package name
 version '1.0-SNAPSHOT'
 
 buildscript {
