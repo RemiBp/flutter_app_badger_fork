@@ -1,0 +1,34 @@
+name: flutter_webrtc_custom
+description: Custom Flutter WebRTC plugin implementation.
+version: 0.0.1
+homepage: # Add repository link here if available
+
+environment:
+  sdk: '>=3.0.0 <4.0.0' # Adjust based on your project's SDK constraints
+  flutter: '>=3.0.0' # Adjust based on your project's Flutter version
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  webrtc_interface: ^1.1.1 # Make sure this matches the override in main pubspec
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0 # Or your preferred linter version
+
+# Flutter specific entries
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.flutter_webrtc_custom # CHANGE TO YOUR PACKAGE NAME
+        pluginClass: FlutterWebRTCPlugin # Choose an appropriate class name
+      ios:
+        pluginClass: FlutterWebRTCPlugin # Choose an appropriate class name
+      web:
+        pluginClass: WebRTCPlugin # Check actual class name if web support is intended
+        fileName: webrtc_web.dart # Check actual file name if web support is intended
+      # Add other platforms like macos, windows, linux if supported 

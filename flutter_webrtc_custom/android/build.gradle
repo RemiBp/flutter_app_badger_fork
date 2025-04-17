@@ -1,0 +1,55 @@
+group 'com.example.flutter_webrtc_custom' // CHANGE TO YOUR PACKAGE NAME
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.0' // Use a version compatible with your project
+        // Add Kotlin plugin if needed
+        // classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10" // Example
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+// apply plugin: 'kotlin-android' // Example if using Kotlin
+
+android {
+    // Use compileSdkVersion and buildToolsVersion from android/app/build.gradle
+    compileSdkVersion 34 // Example: Use the version from your main app
+    buildToolsVersion "34.0.0" // Example: Use the version from your main app
+
+    defaultConfig {
+        minSdkVersion 21 // Example: Use the version from your main app
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Add Kotlin support if your plugin uses Kotlin
+    // kotlinOptions {
+    //     jvmTarget = '1.8'
+    // }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+}
+
+dependencies {
+    // Add Android specific dependencies for WebRTC here
+    // implementation 'org.webrtc:google-webrtc:1.0.32006' // Example
+    implementation "androidx.core:core-ktx:1.9.0" // Example common dependency
+} 

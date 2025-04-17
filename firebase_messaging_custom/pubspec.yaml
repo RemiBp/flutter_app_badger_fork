@@ -1,0 +1,35 @@
+name: firebase_messaging_custom
+description: Custom Firebase Messaging plugin implementation.
+version: 0.0.1
+homepage: # Add repository link here if available
+
+environment:
+  sdk: '>=3.0.0 <4.0.0' # Adjust based on your project's SDK constraints
+  flutter: '>=3.0.0' # Adjust based on your project's Flutter version
+
+dependencies:
+  flutter:
+    sdk: flutter
+  firebase_core: # Depends on the core plugin (standard or custom)
+    # If using your custom core, add the git dependency here like in the main pubspec
+    git:
+      url: https://github.com/RemiBp/flutter_app_badger_fork.git
+      path: firebase_core_custom
+      ref: 81f26be # Use the latest commit hash we just pushed
+  firebase_core_platform_interface: ^5.0.0 # Common dependency
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0 # Or your preferred linter version
+
+# Flutter specific entries
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.example.firebase_messaging_custom # CHANGE TO YOUR PACKAGE NAME
+        pluginClass: FirebaseMessagingCustomPlugin # Choose an appropriate class name
+      ios:
+        pluginClass: FirebaseMessagingCustomPlugin # Choose an appropriate class name
+      # Add other platforms like web, macos, windows, linux if supported 
