@@ -1,6 +1,6 @@
 name: firebase_core
 description: A custom implementation of Firebase Core to avoid Android Gradle issues
-version: 2.15.1
+version: 2.13.0
 homepage: https://github.com/YourUsername/firebase_core_custom
 
 environment:
