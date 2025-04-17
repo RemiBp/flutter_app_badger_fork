@@ -1,0 +1,27 @@
+name: flutter_webrtc
+description: A custom implementation of flutter_webrtc to avoid Android Gradle issues
+version: 0.9.48+hotfix.1
+homepage: https://github.com/RemiBp/flutter_app_badger_fork
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webrtc_interface: 1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.cloudwebrtc.webrtc
+        pluginClass: FlutterWebRTCPlugin
+      ios:
+        pluginClass: FlutterWebRTCPlugin 
