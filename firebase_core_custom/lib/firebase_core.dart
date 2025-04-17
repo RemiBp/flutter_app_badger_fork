@@ -124,6 +124,9 @@ class FirebaseOptions {
   final String? databaseURL;
   final String? measurementId;
   final String? trackingId;
+  final String? iosClientId;
+  final String? iosBundleId;
+  final String? androidClientId;
   
   const FirebaseOptions({
     required this.apiKey,
@@ -135,6 +138,9 @@ class FirebaseOptions {
     this.databaseURL,
     this.measurementId,
     this.trackingId,
+    this.iosClientId,
+    this.iosBundleId,
+    this.androidClientId,
   });
   
   @override
@@ -160,6 +166,9 @@ class Firebase {
       'databaseURL': options.databaseURL,
       'measurementId': options.measurementId,
       'trackingId': options.trackingId,
+      'iosClientId': options.iosClientId,
+      'iosBundleId': options.iosBundleId,
+      'androidClientId': options.androidClientId,
     };
     optionsMap?.removeWhere((key, value) => value == null);
 
