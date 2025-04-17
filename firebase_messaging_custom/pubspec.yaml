@@ -28,8 +28,8 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.firebase_messaging_custom # CHANGE TO YOUR PACKAGE NAME
-        pluginClass: FirebaseMessagingCustomPlugin # Choose an appropriate class name
+        package: io.flutter.plugins.firebase.messaging # Updated package name
+        pluginClass: FirebaseMessagingPlugin # Updated class name
       ios:
-        pluginClass: FirebaseMessagingCustomPlugin # Choose an appropriate class name
+        pluginClass: FirebaseMessagingPlugin # Assuming iOS uses the same class name pattern
       # Add other platforms like web, macos, windows, linux if supported 
