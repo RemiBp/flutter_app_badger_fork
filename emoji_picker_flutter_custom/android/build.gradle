@@ -31,6 +31,8 @@ android {
         minSdkVersion 19
     }
     
+    namespace 'com.fintasys.emoji_picker_flutter'
+    
     // Force JVM 1.8 compatibility
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
