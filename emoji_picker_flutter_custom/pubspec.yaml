@@ -1,4 +1,4 @@
-name: emoji_picker_flutter_custom
+name: emoji_picker_flutter
 description: A custom fork of emoji_picker_flutter with JVM 1.8 compatibility fixes. Provides an Emoji picker widget with 1500+ emojis.
 version: 1.6.4
 homepage: https://github.com/RemiBp/flutter_app_badger_fork
