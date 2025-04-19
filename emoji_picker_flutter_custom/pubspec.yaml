@@ -1,4 +1,4 @@
-name: emoji_picker_flutter
+name: emoji_picker_flutter_custom
 description: Custom wrapper for emoji_picker_flutter with JVM 1.8 compatibility fixes
 version: 1.6.4
 homepage: https://github.com/RemiBp/flutter_app_badger_fork
@@ -10,8 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  # Dépend du package original
-  emoji_picker_flutter: 1.6.4
 
 dev_dependencies:
   flutter_lints: ^2.0.3
