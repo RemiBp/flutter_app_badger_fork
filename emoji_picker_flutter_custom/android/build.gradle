@@ -27,15 +27,11 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 33
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
     defaultConfig {
-        minSdkVersion 19       
+        minSdkVersion 19
     }
-
-    if (project.android.hasProperty("namespace")) { namespace 'com.fintasys.emoji_picker_flutter' }
     
+    // Force JVM 1.8 compatibility
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -44,8 +40,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
+    
+    // Force all Kotlin tasks to use JVM 1.8
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
+    }
+} 
